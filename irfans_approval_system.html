@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Irfan's Approval System Documentation</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .sidebar {
+            height: calc(100vh - 4rem);
+            overflow-y: auto;
+        }
+        .content {
+            height: calc(100vh - 4rem);
+            overflow-y: auto;
+        }
+        .code-block {
+            background-color: #1a202c;
+            color: #e2e8f0;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+        }
+        .nav-link {
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover {
+            background-color: #2d3748;
+        }
+        .active {
+            background-color: #2d3748;
+            border-left: 4px solid #4299e1;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold mb-6">Irfan's Approval System</h1>
+        <div class="flex h-screen">
+            <!-- Sidebar -->
+            <div class="w-64 bg-gray-800 text-white sidebar">
+                <div class="p-4">
+                    <nav>
+                        <ul class="space-y-2">
+                            <li><a href="#introduction" class="block nav-link p-2 rounded">Introduction</a></li>
+                            <li><a href="#features" class="block nav-link p-2 rounded">Features</a></li>
+                            <li><a href="#installation" class="block nav-link p-2 rounded">Installation</a></li>
+                            <li><a href="#configuration" class="block nav-link p-2 rounded">Configuration</a></li>
+                            <li><a href="#usage" class="block nav-link p-2 rounded">Usage</a></li>
+                            <li><a href="#components" class="block nav-link p-2 rounded">Components</a></li>
+                            <li><a href="#api" class="block nav-link p-2 rounded">API Reference</a></li>
+                            <li><a href="#examples" class="block nav-link p-2 rounded">Examples</a></li>
+                            <li><a href="#troubleshooting" class="block nav-link p-2 rounded">Troubleshooting</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="flex-1 content p-8">
+                <section id="introduction" class="mb-8">
+                    <h2 class="text-3xl font-bold mb-4">Introduction</h2>
+                    <p class="mb-4">Irfan's Approval System is a comprehensive approval workflow management system for Laravel applications. It provides a flexible and configurable way to implement multi-layer approval processes in your application.</p>
+                    <div class="bg-blue-100 border-l-4 border-blue-500 p-4 mb-4">
+                        <p class="text-blue-700">The system is designed to be easily integrated into any Laravel application and provides both backend and frontend components for a complete solution.</p>
+                    </div>
+                </section>
+
+                <section id="features" class="mb-8">
+                    <h2 class="text-3xl font-bold mb-4">Features</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="bg-white p-6 rounded-lg shadow">
+                            <i class="fas fa-layer-group text-3xl text-blue-500 mb-4"></i>
+                            <h3 class="text-xl font-semibold mb-2">Multi-layer Approval</h3>
+                            <p>Support for multiple approval layers with configurable approvers and conditions.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow">
+                            <i class="fas fa-history text-3xl text-blue-500 mb-4"></i>
+                            <h3 class="text-xl font-semibold mb-2">Approval History</h3>
+                            <p>Comprehensive tracking of all approval actions with timestamps and remarks.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow">
+                            <i class="fas fa-bell text-3xl text-blue-500 mb-4"></i>
+                            <h3 class="text-xl font-semibold mb-2">Notifications</h3>
+                            <p>Real-time notifications for approval requests and status updates.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow">
+                            <i class="fas fa-shield-alt text-3xl text-blue-500 mb-4"></i>
+                            <h3 class="text-xl font-semibold mb-2">Security</h3>
+                            <p>Role-based access control and rate limiting for secure operations.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow">
+                            <i class="fas fa-code text-3xl text-blue-500 mb-4"></i>
+                            <h3 class="text-xl font-semibold mb-2">API Integration</h3>
+                            <p>RESTful API endpoints for seamless integration with frontend applications.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow">
+                            <i class="fas fa-mobile-alt text-3xl text-blue-500 mb-4"></i>
+                            <h3 class="text-xl font-semibold mb-2">Responsive UI</h3>
+                            <p>Modern, responsive user interface components built with Vue.js and Tailwind CSS.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="installation" class="mb-8">
+                    <h2 class="text-3xl font-bold mb-4">Installation</h2>
+                    
+                    <h3 class="text-2xl font-semibold mb-2">Backend Installation</h3>
+                    <div class="code-block">
+                        <pre><code>composer require irfan/approval-system</code></pre>
+                    </div>
+                    <p class="mb-4">Publish the configuration and migrations:</p>
+                    <div class="code-block">
+                        <pre><code>php artisan vendor:publish --tag=approval-system-config
+php artisan vendor:publish --tag=approval-system-migrations</code></pre>
+                    </div>
+
+                    <h3 class="text-2xl font-semibold mb-2 mt-6">Frontend Installation</h3>
+                    <div class="code-block">
+                        <pre><code>npm install irfan-approval-system
+# or
+yarn add irfan-approval-system</code></pre>
+                    </div>
+                </section>
+
+                <section id="configuration" class="mb-8">
+                    <h2 class="text-3xl font-bold mb-4">Configuration</h2>
+                    
+                    <h3 class="text-2xl font-semibold mb-2">Backend Configuration</h3>
+                    <p class="mb-4">Configure your approval settings in <code>config/approval-system.php</code>:</p>
+                    <div class="code-block">
+                        <pre><code>return [
+    'default_status' => 'pending',
+    'actions' => [
+        'approve' => 'Approve',
+        'reject' => 'Reject',
+        'review' => 'Review'
+    ],
+    'statuses' => [
+        'pending' => 'Pending',
+        'approved' => 'Approved',
+        'rejected' => 'Rejected',
+        'reviewed' => 'Reviewed'
+    ],
+    'rate_limit' => [
+        'enabled' => true,
+        'max_attempts' => 60,
+        'decay_minutes' => 1
+    ]
+];</code></pre>
+                    </div>
+
+                    <h3 class="text-2xl font-semibold mb-2 mt-6">Frontend Configuration</h3>
+                    <p class="mb-4">Configure the frontend in your Vue application:</p>
+                    <div class="code-block">
+                        <pre><code>import { createApp } from 'vue';
+import ApprovalSystem from 'irfan-approval-system';
+import 'irfan-approval-system/dist/style.css';
+
+const app = createApp(App);
+app.use(ApprovalSystem, {
+    apiBaseUrl: '/api',
+    endpoints: {
+        approvals: '/approvals',
+        settings: '/approval-settings'
+    }
+});</code></pre>
+                    </div>
+                </section>
+
+                <section id="usage" class="mb-8">
+                    <h2 class="text-3xl font-bold mb-4">Usage</h2>
+                    
+                    <h3 class="text-2xl font-semibold mb-2">Backend Usage</h3>
+                    <p class="mb-4">Add the approval trait to your model:</p>
+                    <div class="code-block">
+                        <pre><code>use Irfan\ApprovalSystem\Traits\HasApprovalWorkflow;
+
+class YourModel extends Model
+{
+    use HasApprovalWorkflow;
+}</code></pre>
+                    </div>
+
+                    <h3 class="text-2xl font-semibold mb-2 mt-6">Frontend Usage</h3>
+                    <p class="mb-4">Use the approval components in your Vue templates:</p>
+                    <div class="code-block">
+                        <pre><code>&lt;template&gt;
+    &lt;div&gt;
+        &lt;approval-status
+            :status="item.status"
+            :current-layer="item.currentLayer"
+            :total-layers="item.totalLayers"
+        /&gt;
+        &lt;approval-actions
+            :model-type="modelType"
+            :record-id="recordId"
+            :can-approve="canApprove"
+            @approval-complete="handleApprovalComplete"
+        /&gt;
+    &lt;/div&gt;
+&lt;/template&gt;</code></pre>
+                    </div>
+                </section>
+
+                <section id="components" class="mb-8">
+                    <h2 class="text-3xl font-bold mb-4">Components</h2>
+                    
+                    <div class="space-y-6">
+                        <div class="bg-white p-6 rounded-lg shadow">
+                            <h3 class="text-xl font-semibold mb-2">ApprovalStatus</h3>
+                            <p class="mb-4">Displays the current approval status and progress.</p>
+                            <div class="code-block">
+                                <pre><code>&lt;approval-status
+    :status="status"
+    :current-layer="currentLayer"
+    :total-layers="totalLayers"
+/&gt;</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-lg shadow">
+                            <h3 class="text-xl font-semibold mb-2">ApprovalActions</h3>
+                            <p class="mb-4">Provides approve/reject/review actions with modal confirmations.</p>
+                            <div class="code-block">
+                                <pre><code>&lt;approval-actions
+    :model-type="modelType"
+    :record-id="recordId"
+    :can-approve="canApprove"
+    @approval-complete="handleApprovalComplete"
+/&gt;</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-lg shadow">
+                            <h3 class="text-xl font-semibold mb-2">ApprovalHistory</h3>
+                            <p class="mb-4">Shows the complete approval history with timestamps and remarks.</p>
+                            <div class="code-block">
+                                <pre><code>&lt;approval-history
+    :model-type="modelType"
+    :model-id="modelId"
+/&gt;</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="api" class="mb-8">
+                    <h2 class="text-3xl font-bold mb-4">API Reference</h2>
+                    
+                    <div class="space-y-6">
+                        <div class="bg-white p-6 rounded-lg shadow">
+                            <h3 class="text-xl font-semibold mb-2">GET /api/approvals/pending</h3>
+                            <p class="mb-4">Get pending approvals for the current user.</p>
+                            <div class="code-block">
+                                <pre><code>Response:
+{
+    "data": [
+        {
+            "id": 1,
+            "model_type": "App\\Models\\Document",
+            "model_id": 123,
+            "status": "pending",
+            "current_layer": 1,
+            "total_layers": 3
+        }
+    ]
+}</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-6 rounded-lg shadow">
+                            <h3 class="text-xl font-semibold mb-2">POST /api/approvals/approve</h3>
+                            <p class="mb-4">Approve an item.</p>
+                            <div class="code-block">
+                                <pre><code>Request:
+{
+    "model_type": "App\\Models\\Document",
+    "model_id": 123,
+    "remarks": "Approved as per policy"
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="examples" class="mb-8">
+                    <h2 class="text-3xl font-bold mb-4">Examples</h2>
+                    
+                    <div class="space-y-6">
+                        <div class="bg-white p-6 rounded-lg shadow">
+                            <h3 class="text-xl font-semibold mb-2">Basic Implementation</h3>
+                            <div class="code-block">
+                                <pre><code>// Model
+class Document extends Model
+{
+    use HasApprovalWorkflow;
+}
+
+// Controller
+class DocumentController extends Controller
+{
+    public function approve(Request $request, Document $document)
+    {
+        $document->approve($request->user(), $request->remarks);
+        return response()->json(['message' => 'Document approved']);
+    }
+}
+
+// Vue Component
+&lt;template&gt;
+    &lt;div&gt;
+        &lt;approval-status :status="document.status" /&gt;
+        &lt;approval-actions
+            :model-type="'Document'"
+            :record-id="document.id"
+            :can-approve="canApprove"
+        /&gt;
+    &lt;/div&gt;
+&lt;/template&gt;</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="troubleshooting" class="mb-8">
+                    <h2 class="text-3xl font-bold mb-4">Troubleshooting</h2>
+                    
+                    <div class="space-y-4">
+                        <div class="bg-white p-6 rounded-lg shadow">
+                            <h3 class="text-xl font-semibold mb-2">Common Issues</h3>
+                            <ul class="list-disc pl-6 space-y-2">
+                                <li>Migration Issues
+                                    <ul class="list-disc pl-6">
+                                        <li>Run <code>php artisan migrate:fresh</code> if tables already exist</li>
+                                        <li>Check database connection settings</li>
+                                    </ul>
+                                </li>
+                                <li>Component Not Loading
+                                    <ul class="list-disc pl-6">
+                                        <li>Verify Vue plugin registration</li>
+                                        <li>Check for proper CSS imports</li>
+                                    </ul>
+                                </li>
+                                <li>API Integration Issues
+                                    <ul class="list-disc pl-6">
+                                        <li>Verify API endpoint configuration</li>
+                                        <li>Check authentication headers</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add active class to current section in navigation
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+                const target = document.querySelector(link.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Highlight current section in navigation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    document.querySelectorAll('.nav-link').forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${entry.target.id}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html> 
